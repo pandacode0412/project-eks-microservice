@@ -1,0 +1,30 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: product-service
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+        autoscaling.knative.dev/maxScale: "10"
+        serving.knative.dev/rolloutDuration: "0"
+    spec:
+      containers:
+        - name: product-service
+          image: datnxdevops/knative-product:latest
+          env:
+            - name: MYSQL_HOST
+              value: mysql
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_DATABASE
+              value: javatechie
+            - name: MYSQL_USER
+              value: root
+            - name: MYSQL_PASSWORD
+              value: root
+            - name: URL_IDENTITY_SERVICE
+              value: http://identity-service.default
+          ports:
+            - containerPort: 8082

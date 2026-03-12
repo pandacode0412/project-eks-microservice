@@ -1,0 +1,24 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: notification-service
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+        autoscaling.knative.dev/maxScale: "10"
+        serving.knative.dev/rolloutDuration: "0"
+    spec:
+      containers:
+        - name: notification-service
+          image: datnxdevops/knative-notification:latest
+          env:
+            - name: KAFKA_HOST
+              value: kafka
+            - name: KAFKA_PORT
+              value: "9092"
+            - name: KAFKA_GROUP_ID
+              value: notification-group
+          ports:
+            - containerPort: 8083

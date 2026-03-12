@@ -1,5 +1,6 @@
 vault/cluster-keys.json
 /vault/minikube-cluster-keys.json
+vault/*.json"
 # Terraform build artifacts
 **/.terraform/*
 *.tfstate
@@ -14,3 +15,4 @@ override.tf.json
 *_override.tf.json
 .terraformrc
 terraform.rc
+vault/*.json

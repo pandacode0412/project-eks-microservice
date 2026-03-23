@@ -128,7 +128,7 @@ kubectl apply -f virtual-services.yaml
   ```bash
   kubectl get svc -n istio-ingress
   ```
-- Trỏ DNS (hoặc /etc/hosts) về EXTERNAL-IP với các host đã cấu hình trong VirtualService (ví dụ: `test.raydensolution.com`, `api.raydensolution.com`).
+- Trỏ DNS (hoặc /etc/hosts) về EXTERNAL-IP với các host đã cấu hình trong VirtualService (ví dụ: `test.onefirefly.com`, `api.onefirefly.com`).
 - Truy cập hệ thống qua các domain này.
 
 ---

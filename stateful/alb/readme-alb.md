@@ -21,8 +21,8 @@ kubectl cluster-info
   - `serviceAccount.annotations.eks.amazonaws.com/role-arn: arn:aws:iam::115228050885:role/aws-load-balancer-controller-Role`
 - **Ingress mẫu**: `stateful/alb/ing.yaml`
   - Host:
-    - `test.raydensolution.com` → `frontend-service:80`
-    - `api.raydensolution.com` → `api-gateway:8080` và `/ws` → `notification-service:8083`
+    - `test.onefirefly.com` → `frontend-service:80`
+    - `api.onefirefly.com` → `api-gateway:8080` và `/ws` → `notification-service:8083`
 
 ## Bước 1 — Tạo IAM Policy + IAM Role (IRSA) cho controller
 
@@ -116,8 +116,8 @@ Khi ALB được tạo xong, cột `ADDRESS` sẽ hiện DNS name của ALB.
 
 Ingress đang dùng 2 host:
 
-- `test.raydensolution.com`
-- `api.raydensolution.com`
+- `test.onefirefly.com`
+- `api.onefirefly.com`
 
 Bạn cần tạo bản ghi DNS (CNAME hoặc ALIAS) trỏ 2 domain này về DNS name của ALB (lấy ở `kubectl get ingress`).
 

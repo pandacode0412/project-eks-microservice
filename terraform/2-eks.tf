@@ -13,13 +13,14 @@ module "eks" {
     aws-ebs-csi-driver = { most_recent = true }
     metrics-server     = { most_recent = true }
     # aws-efs-csi-driver = {
-    #   most_recent              = true
-    #   service_account_role_arn = aws_iam_role.efs_csi_controller_irsa.arn
+    #   most_recent = true
+    #   # service_account_role_arn = aws_iam_role.efs_csi_controller_irsa.arn
+    #   service_account_role_arn = module.efs_csi_irsa.role_arn
     # }
   }
 
   eks_managed_node_groups = {
-    example = {
+    worker = {
       instance_types = ["t3.medium"]
       min_size       = 0
       max_size       = 5
@@ -53,6 +54,17 @@ module "karpenter_role" {
   cluster_name      = module.eks.cluster_name
   namespace         = "karpenter"
 }
+
+# //vd
+# module "efs_csi_irsa" {
+#   source               = "./service-account-role"
+#   service_account_name = "efs-csi-controller"
+#   namespace            = "kube-system"
+#   eks_oidc_provider    = module.eks.oidc_provider
+#   env                  = "dev" # tùy bạn dùng gì
+#   policy_file_path     = "${path.module}/iam/json/aws-efs-csi-driver-Policy.json"
+# }
+
 
 output "karpenter_role" {
   value = module.karpenter_role

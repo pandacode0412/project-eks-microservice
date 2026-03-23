@@ -2,14 +2,14 @@
 apiVersion: networking.internal.knative.dev/v1alpha1
 kind: ClusterDomainClaim
 metadata:
-  name: test.raydensolution.com
+  name: test.onefirefly.com
 spec:
   namespace: default
 ---
 apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
-  name: test.raydensolution.com
+  name: test.onefirefly.com
   namespace: default
 spec:
   ref:
@@ -17,21 +17,18 @@ spec:
     kind: Service
     apiVersion: serving.knative.dev/v1
 ---
-
-
-
 # API Gateway Service
 apiVersion: networking.internal.knative.dev/v1alpha1
 kind: ClusterDomainClaim
 metadata:
-  name: api.raydensolution.com
+  name: api.onefirefly.com
 spec:
   namespace: default
 ---
 apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
-  name: api.raydensolution.com
+  name: api.onefirefly.com
   namespace: default
 spec:
   ref:
@@ -39,24 +36,21 @@ spec:
     kind: Service
     apiVersion: serving.knative.dev/v1
 ---
-
 # Notification Service - WebSocket
 apiVersion: networking.internal.knative.dev/v1alpha1
 kind: ClusterDomainClaim
 metadata:
-  name: noti.raydensolution.com
+  name: noti.onefirefly.com
 spec:
   namespace: default
 ---
 apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
-  name: noti.raydensolution.com
+  name: noti.onefirefly.com
   namespace: default
 spec:
   ref:
     name: notification-service
     kind: Service
     apiVersion: serving.knative.dev/v1
-
-

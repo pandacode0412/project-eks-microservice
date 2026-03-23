@@ -8,20 +8,20 @@ spec:
   selector:
     istio: ingressgateway
   servers:
-  - port:
-      number: 80
-      name: http
-      protocol: HTTP
-    hosts:
-    - "test.raydensolution.com"    # Frontend application
-    - "api.raydensolution.com"     # API Gateway and microservices
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "test.onefirefly.com" # Frontend application
+        - "api.onefirefly.com" # API Gateway and microservices
   # - port:
   #     number: 443
   #     name: https
   #     protocol: HTTPS
   #   tls:
   #     mode: SIMPLE
-  #     credentialName: raydensolution-tls
+  #     credentialName: onefirefly-tls
   #   hosts:
-  #   - "test.raydensolution.com"
-  #   - "api.raydensolution.com" 
+  #   - "test.onefirefly.com"
+  #   - "api.onefirefly.com"

@@ -21,6 +21,9 @@ global:
   imagePullSecrets: []
   defaultStorageClass: ""
   storageClass: "gp2"
+  security:
+    # Cho phep dung image khong phai “chuẩn” Bitnami (bitnamilegacy/*)
+    allowInsecureImages: true
   ## Compatibility adaptations for Kubernetes platforms
   ##
   compatibility:
@@ -68,11 +71,11 @@ diagnosticMode:
   ## @param diagnosticMode.command Command to override all containers in the statefulset
   ##
   command:
-  - sleep
+    - sleep
   ## @param diagnosticMode.args Args to override all containers in the statefulset
   ##
   args:
-  - infinity
+    - infinity
 ## @section Kafka parameters
 ##
 
@@ -88,8 +91,8 @@ diagnosticMode:
 ##
 image:
   registry: docker.io
-  repository: bitnami/kafka
-  tag: 3.8.0-debian-12-r5
+  repository: bitnamilegacy/kafka
+  tag: 3.9.0-debian-12-r12
   digest: ""
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -885,7 +888,7 @@ controller:
     ## @param controller.persistence.accessModes Persistent Volume Access Modes
     ##
     accessModes:
-    - ReadWriteOnce
+      - ReadWriteOnce
     ## @param controller.persistence.size PVC Storage Request for Kafka data volume
     ##
 
@@ -926,7 +929,7 @@ controller:
     ## @param controller.logPersistence.accessModes Persistent Volume Access Modes
     ##
     accessModes:
-    - ReadWriteOnce
+      - ReadWriteOnce
     ## @param controller.logPersistence.size PVC Storage Request for Kafka logs volume
     ##
     size: 8Gi
@@ -1080,13 +1083,13 @@ broker:
   # resourcesPreset: "small"
   ## @param broker.resources Set container requests and limits for different resources like CPU or memory (essential for production workloads)
   ## Example:
-  resources:              # Cấu hình tài nguyên tùy chỉnh cho broker
+  resources: # Cấu hình tài nguyên tùy chỉnh cho broker
     requests:
-      cpu: "100m"          # Yêu cầu 100 millicores CPU
-      memory: "256Mi"      # Yêu cầu 256MB RAM
+      cpu: "100m" # Yêu cầu 100 millicores CPU
+      memory: "256Mi" # Yêu cầu 256MB RAM
     limits:
-      cpu: "200m"          # Giới hạn 200 millicores CPU
-      memory: "512Mi"      # Giới hạn 512MB RAM
+      cpu: "200m" # Giới hạn 200 millicores CPU
+      memory: "512Mi" # Giới hạn 512MB RAM
   ##
   ## Kafka pods' Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
@@ -1342,9 +1345,9 @@ broker:
     ## @param broker.persistence.accessModes Persistent Volume Access Modes
     ##
     accessModes:
-    - ReadWriteOnce
+      - ReadWriteOnce
     ## @param broker.persistence.size PVC Storage Request for Kafka data volume
-    ## PVC cho data-kafka-broker-0,1,2  
+    ## PVC cho data-kafka-broker-0,1,2
     size: 2Gi
     ## @param broker.persistence.annotations Annotations for the PVC
     ##
@@ -1382,7 +1385,7 @@ broker:
     ## @param broker.logPersistence.accessModes Persistent Volume Access Modes
     ##
     accessModes:
-    - ReadWriteOnce
+      - ReadWriteOnce
     ## @param broker.logPersistence.size PVC Storage Request for Kafka logs volume
     ##
     size: 8Gi
@@ -2015,11 +2018,11 @@ metrics:
     ## (2) commented out above `overrideConfig`.
     ##
     whitelistObjectNames:
-    - kafka.controller:*
-    - kafka.server:*
-    - java.lang:*
-    - kafka.network:*
-    - kafka.log:*
+      - kafka.controller:*
+      - kafka.server:*
+      - java.lang:*
+      - kafka.network:*
+      - kafka.log:*
     ## @param metrics.jmx.config [string] Configuration file for JMX exporter
     ## Specify content for jmx-kafka-prometheus.yml. Evaluated as a template
     ##
@@ -2407,6 +2410,11 @@ zookeeper:
   ## @param zookeeper.replicaCount Number of ZooKeeper nodes
   ##
   replicaCount: 1
+  # Override ZooKeeper image sang legacy registry
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/zookeeper
+    tag: 3.9.3-debian-12-r21
   ## ZooKeeper authentication
   ##
   auth:
@@ -2437,7 +2445,7 @@ zookeeper:
     enabled: true #nào cài thật thì true nhé !!!
     storageClass: ""
     accessModes:
-    - ReadWriteOnce
+      - ReadWriteOnce
     size: 2Gi
 ## External Zookeeper Configuration
 ##
@@ -2445,4 +2453,3 @@ externalZookeeper:
   ## @param externalZookeeper.servers List of external zookeeper servers to use. Typically used in combination with 'zookeeperChrootPath'. Must be empty if you use KRaft mode.
   ##
   servers: zookeeper.prod.svc.cluster.local
-

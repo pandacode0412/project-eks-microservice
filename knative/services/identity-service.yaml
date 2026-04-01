@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: identity-service
-          image: datnxdevops/knative-identity:latest
+          image: ap0412/knative-identity:latest
           env:
             - name: MYSQL_HOST
               value: mysql

@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: product-service
-          image: datnxdevops/knative-product:latest
+          image: ap0412/knative-product:latest
           env:
             - name: MYSQL_HOST
               value: mysql

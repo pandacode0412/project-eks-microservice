@@ -14,23 +14,23 @@ spec:
       containerConcurrency: 100
       timeoutSeconds: 300
       containers:
-      - name: api-gateway
-        image: datnxdevops/knative-apigateway:latest
-        env:
-        - name: ORDER_SERVICE_URI
-          value: http://order-service.default
-        - name: PRODUCT_SERVICE_URI
-          value: http://product-service.default
-        - name: IDENTITY_SERVICE_URI
-          value: http://identity-service.default
-        - name: URL_VALIDATE_TOKEN
-          value: http://identity-service.default/auth/validate
-        ports:
-        - containerPort: 8080
-        resources:
-          requests:
-            memory: "256Mi"
-            cpu: "250m"
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
+        - name: api-gateway
+          image: ap0412/knative-apigateway:latest
+          env:
+            - name: ORDER_SERVICE_URI
+              value: http://order-service.default
+            - name: PRODUCT_SERVICE_URI
+              value: http://product-service.default
+            - name: IDENTITY_SERVICE_URI
+              value: http://identity-service.default
+            - name: URL_VALIDATE_TOKEN
+              value: http://identity-service.default/auth/validate
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"

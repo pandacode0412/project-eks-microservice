@@ -13,19 +13,19 @@ spec:
         app: api-gateway
     spec:
       containers:
-      - name: api-gateway
-        image: datnxdevops/knative-apigateway:latest
-        env:
-        - name: ORDER_SERVICE_URI
-          value: http://order-service:8081
-        - name: PRODUCT_SERVICE_URI
-          value: http://product-service:8082
-        - name: IDENTITY_SERVICE_URI
-          value: http://identity-service:9898
-        - name: URL_VALIDATE_TOKEN
-          value: http://identity-service:9898/auth/validate
-        ports:
-        - containerPort: 8080
+        - name: api-gateway
+          image: ap0412/knative-apigateway:latest
+          env:
+            - name: ORDER_SERVICE_URI
+              value: http://order-service:8081
+            - name: PRODUCT_SERVICE_URI
+              value: http://product-service:8082
+            - name: IDENTITY_SERVICE_URI
+              value: http://identity-service:9898
+            - name: URL_VALIDATE_TOKEN
+              value: http://identity-service:9898/auth/validate
+          ports:
+            - containerPort: 8080
 
 ---
 apiVersion: v1
@@ -36,7 +36,6 @@ spec:
   selector:
     app: api-gateway
   ports:
-  - protocol: TCP
-    port: 8080
-    targetPort: 8080
-
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

@@ -3,14 +3,14 @@
 # They route traffic to appropriate Knative services based on host and path
 
 # Virtual Service for Frontend Application
-# Routes all traffic for test.onefirefly.com to the frontend service
+# Routes all traffic for test.onefirefly.click to the frontend service
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: frontend-vs
 spec:
   hosts:
-    - "test.onefirefly.com"
+    - "test.onefirefly.click"
   gateways:
     - stateful-gateway
   http:
@@ -28,7 +28,7 @@ spec:
 
 ---
 # Virtual Service for API Gateway and Microservices
-# Routes traffic for api.onefirefly.com to different services based on path
+# Routes traffic for api.onefirefly.click to different services based on path
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -36,7 +36,7 @@ metadata:
 spec:
   # Host that this VirtualService handles
   hosts:
-    - "api.onefirefly.com"
+    - "api.onefirefly.click"
   gateways:
     - stateful-gateway
   http:

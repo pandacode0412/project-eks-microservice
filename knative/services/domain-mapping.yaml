@@ -2,14 +2,14 @@
 apiVersion: networking.internal.knative.dev/v1alpha1
 kind: ClusterDomainClaim
 metadata:
-  name: test.onefirefly.com
+  name: test.onefirefly.click
 spec:
   namespace: default
 ---
 apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
-  name: test.onefirefly.com
+  name: test.onefirefly.click
   namespace: default
 spec:
   ref:
@@ -21,14 +21,14 @@ spec:
 apiVersion: networking.internal.knative.dev/v1alpha1
 kind: ClusterDomainClaim
 metadata:
-  name: api.onefirefly.com
+  name: api.onefirefly.click
 spec:
   namespace: default
 ---
 apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
-  name: api.onefirefly.com
+  name: api.onefirefly.click
   namespace: default
 spec:
   ref:
@@ -40,14 +40,14 @@ spec:
 apiVersion: networking.internal.knative.dev/v1alpha1
 kind: ClusterDomainClaim
 metadata:
-  name: noti.onefirefly.com
+  name: noti.onefirefly.click
 spec:
   namespace: default
 ---
 apiVersion: serving.knative.dev/v1beta1
 kind: DomainMapping
 metadata:
-  name: noti.onefirefly.com
+  name: noti.onefirefly.click
   namespace: default
 spec:
   ref:

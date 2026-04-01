@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: notification-service
-          image: datnxdevops/knative-notification:latest
+          image: ap0412/knative-notification:latest
           env:
             - name: KAFKA_HOST
               value: kafka

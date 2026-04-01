@@ -13,29 +13,29 @@ spec:
         app: order-service
     spec:
       containers:
-      - name: order-service
-        image: datnxdevops/knative-order:latest
-        env:
-        - name: KAFKA_HOST
-          value: kafka
-        - name: KAFKA_PORT
-          value: "9092"
-        - name: MYSQL_HOST
-          value: mysql
-        - name: MYSQL_PORT
-          value: "3306"
-        - name: MYSQL_DATABASE
-          value: javatechie
-        - name: MYSQL_USER
-          value: root
-        - name: MYSQL_PASSWORD
-          value: root
-        - name: URL_IDENTITY_SERVICE
-          value: http://identity-service:9898
-        - name: URL_PRODUCT_SERVICE
-          value: http://product-service:8082
-        ports:
-        - containerPort: 8081
+        - name: order-service
+          image: ap0412/knative-order:latest
+          env:
+            - name: KAFKA_HOST
+              value: kafka
+            - name: KAFKA_PORT
+              value: "9092"
+            - name: MYSQL_HOST
+              value: mysql
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_DATABASE
+              value: javatechie
+            - name: MYSQL_USER
+              value: root
+            - name: MYSQL_PASSWORD
+              value: root
+            - name: URL_IDENTITY_SERVICE
+              value: http://identity-service:9898
+            - name: URL_PRODUCT_SERVICE
+              value: http://product-service:8082
+          ports:
+            - containerPort: 8081
 
 ---
 apiVersion: v1

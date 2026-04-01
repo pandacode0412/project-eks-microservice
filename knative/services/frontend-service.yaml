@@ -14,15 +14,15 @@ spec:
       containerConcurrency: 50
       timeoutSeconds: 300
       containers:
-      - name: frontend
-        image: datnxdevops/knative-frontend:knative
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 80
-        resources:
-          requests:
-            memory: "128Mi"
-            cpu: "100m"
-          limits:
-            memory: "256Mi"
-            cpu: "200m"
+        - name: frontend
+          image: ap0412/knative-frontend:knative
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"

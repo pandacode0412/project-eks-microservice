@@ -13,23 +13,23 @@ spec:
         app: product-service
     spec:
       containers:
-      - name: product-service
-        image: datnxdevops/knative-product:latest
-        env:
-        - name: MYSQL_HOST
-          value: mysql
-        - name: MYSQL_PORT
-          value: "3306"
-        - name: MYSQL_DATABASE
-          value: javatechie
-        - name: MYSQL_USER
-          value: root
-        - name: MYSQL_PASSWORD
-          value: root
-        - name: URL_IDENTITY_SERVICE
-          value: http://identity-service:9898
-        ports:
-        - containerPort: 8082
+        - name: product-service
+          image: ap0412/knative-product:latest
+          env:
+            - name: MYSQL_HOST
+              value: mysql
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_DATABASE
+              value: javatechie
+            - name: MYSQL_USER
+              value: root
+            - name: MYSQL_PASSWORD
+              value: root
+            - name: URL_IDENTITY_SERVICE
+              value: http://identity-service:9898
+          ports:
+            - containerPort: 8082
 
 ---
 apiVersion: v1

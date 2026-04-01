@@ -13,8 +13,8 @@ spec:
         name: http
         protocol: HTTP
       hosts:
-        - "test.onefirefly.com" # Frontend application
-        - "api.onefirefly.com" # API Gateway and microservices
+        - "test.onefirefly.click" # Frontend application
+        - "api.onefirefly.click" # API Gateway and microservices
   # - port:
   #     number: 443
   #     name: https
@@ -23,5 +23,5 @@ spec:
   #     mode: SIMPLE
   #     credentialName: onefirefly-tls
   #   hosts:
-  #   - "test.onefirefly.com"
-  #   - "api.onefirefly.com"
+  #   - "test.onefirefly.click"
+  #   - "api.onefirefly.click"

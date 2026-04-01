@@ -86,8 +86,8 @@ diagnosticMode:
 ##
 image:
   registry: docker.io
-  repository: bitnami/zookeeper
-  tag: 3.9.2-debian-12-r12
+  repository: bitnamilegacy/zookeeper
+  tag: 3.9.3-debian-12-r21
   digest: ""
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'

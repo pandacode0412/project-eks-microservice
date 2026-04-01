@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: order-service
-          image: datnxdevops/knative-order:latest
+          image: ap0412/knative-order:latest
           env:
             - name: KAFKA_HOST
               value: kafka

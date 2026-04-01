@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: test.onefirefly.com
+    - host: test.onefirefly.click
       http:
         paths:
           - path: /
@@ -18,7 +18,7 @@ spec:
                 name: frontend-service
                 port:
                   number: 80
-    - host: api.onefirefly.com
+    - host: api.onefirefly.click
       http:
         paths:
           - path: /

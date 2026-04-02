@@ -176,20 +176,20 @@ KUBERNETES_CA_CERT=$(kubectl config view --raw --minify --flatten -o jsonpath='{
 kubectl exec vault-0 -- vault write auth/kubernetes/config \
     kubernetes_host="$KUBERNETES_HOST" \
     kubernetes_ca_cert="$KUBERNETES_CA_CERT" \
-    token_reviewer_jwt="$(kubectl get secret $(kubectl get serviceaccount tinhbt -o jsonpath='{.secrets[0].name}') -o jsonpath='{.data.token}' | base64 --decode)"
+    token_reviewer_jwt="$(kubectl get secret $(kubectl get serviceaccount vault-demo-sa -o jsonpath='{.secrets[0].name}') -o jsonpath='{.data.token}' | base64 --decode)"
 ```
 
 ### 5. Create Policy and Role
 
 ```bash
 # Create policy
-kubectl exec vault-0 -- vault policy write tinhbt-kv-policy vault-kv-policy.hcl
+kubectl exec vault-0 -- vault policy write vault-demo-kv-policy vault-kv-policy.hcl
 
 # Create Kubernetes role
-kubectl exec vault-0 -- vault write auth/kubernetes/role/nginx-role \
-    bound_service_account_names=tinhbt \
+kubectl exec vault-0 -- vault write auth/kubernetes/role/vault-demo-role \
+    bound_service_account_names=vault-demo-sa \
     bound_service_account_namespaces=default \
-    policies=tinhbt-kv-policy \
+    policies=vault-demo-kv-policy \
     ttl=1h
 ```
 
@@ -216,8 +216,8 @@ The test deployment includes:
 
 ```bash
 # Check if secrets are injected
-kubectl exec deployment/tinhbt -- ls -la /vault/secrets/
-kubectl exec deployment/tinhbt -- cat /vault/secrets/mysecret
+kubectl exec deployment/vault-agent-demo -- ls -la /vault/secrets/
+kubectl exec deployment/vault-agent-demo -- cat /vault/secrets/mysecret
 ```
 
 ## 🔍 Monitoring and Troubleshooting

@@ -99,19 +99,18 @@ The infrastructure is configured with the following settings:
 
 #### EKS Configuration (`2-eks.tf`)
 - **Cluster Name**: `phuceks`
-- **Kubernetes Version**: `1.32`
+- **Kubernetes Version**: `1.34` (khop `2-eks.tf`; neu AWS chua ho tro, ha xuong ban EKS dang co)
 - **Node Group**: `t3.medium` instances
-- **Scaling**: 2-5 nodes (auto-scaling)
+- **Scaling**: `min_size` 0, `max_size` 5, `desired_size` 2 (co the scale ve 0 node)
 - **Add-ons**: CoreDNS, kube-proxy, VPC CNI, EBS CSI Driver, Metrics Server
 - **IAM Policies**: All necessary worker node policies
 
 ### Customization
 
-To customize the configuration, modify the `locals` block in `1-vpc.tf`:
+To customize the configuration, modify the `locals` block in `1-vpc.tf` (tru `account_id`: lay tu AWS credentials qua `data.aws_caller_identity`).
 
 ```hcl
 locals {
-  account_id           = "YOUR_ACCOUNT_ID"
   region               = "us-east-1"
   cluster_name         = "your-cluster-name"
   cidr                 = "10.0.0.0/16"
@@ -120,6 +119,8 @@ locals {
   private_subnet_cidrs = ["10.0.3.0/24", "10.0.4.0/24"]
 }
 ```
+
+**EBS / PVC:** Manifest trong repo dung StorageClass **gp3**. Addon `aws-ebs-csi-driver` da bat trong `2-eks.tf`. Sau `apply`, kiem tra `kubectl get storageclass` va tao SC `gp3` lam mac dinh neu can.
 
 ## 🏗️ Resource Details
 
@@ -149,7 +150,7 @@ locals {
 
 ### EKS Cluster
 
-- **Version**: Kubernetes 1.32
+- **Version**: Kubernetes 1.34 (xem `2-eks.tf`)
 - **Endpoint Access**: Public access enabled
 - **Security Groups**: Minimal required access
 - **IAM Roles**: Properly configured for EKS
@@ -158,7 +159,7 @@ locals {
 ### Node Groups
 
 - **Instance Types**: t3.medium
-- **Scaling**: 2-5 nodes (auto-scaling)
+- **Scaling**: min 0, max 5, desired 2
 - **Subnets**: Private subnets only
 - **IAM Roles**: All necessary worker node policies attached
 - **Security Groups**: Tagged for Karpenter discovery

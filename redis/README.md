@@ -15,7 +15,7 @@
    - [Knative + Istio](../knative/README.md)
 
 ## 🔧 Configuration
-- **Storage:** 1Gi (gp2)
+- **Storage:** 1Gi (gp3)
 - **Port:** 6379
 
 ## 📚 Related Documentation

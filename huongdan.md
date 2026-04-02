@@ -68,10 +68,10 @@ Ban can chon 1 bo domain thong nhat va sua cac file lien quan truoc khi public (
 
 ### 3.4 StorageClass
 
-- MySQL/Redis/Vault dung storage class kieu EBS (`gp2/gp3` tuy file)
+- MySQL/Redis/Vault dung storage class kieu EBS (`gp3`; cluster cu co the con `gp2`)
 - Kafka chart dang co cau hinh persistence lien quan `nfs-client` trong `kafka/kafka-values.yaml`
 
-Neu cluster khong co `nfs-client`, can doi ve storage class co san tren EKS (vi du `gp2` hoac `gp3`) de PVC bind duoc.
+Neu cluster khong co `nfs-client`, can doi ve storage class co san tren EKS (uu tien `gp3`) de PVC bind duoc.
 
 ## 4) Trinh tu deploy end-to-end
 

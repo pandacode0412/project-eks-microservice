@@ -20,7 +20,7 @@ global:
   ##
   imagePullSecrets: []
   defaultStorageClass: ""
-  storageClass: "gp2"
+  storageClass: "gp3"
   security:
     # Cho phep dung image khong phai “chuẩn” Bitnami (bitnamilegacy/*)
     allowInsecureImages: true

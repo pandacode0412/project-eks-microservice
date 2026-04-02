@@ -1,3 +1,5 @@
+# PVC trong repo (MySQL, Redis, Kafka, Vault) dung StorageClass gp3.
+# Can co addon aws-ebs-csi-driver + StorageClass gp3 tren cluster (xem: kubectl get storageclass).
 module "eks" {
   source                                   = "terraform-aws-modules/eks/aws"
   version                                  = "~> 20.31"
@@ -10,6 +12,7 @@ module "eks" {
     coredns            = { most_recent = true }
     kube-proxy         = { most_recent = true }
     vpc-cni            = { most_recent = true }
+    # Dynamic volume cho Pod (gp3 trong manifest YAML)
     aws-ebs-csi-driver = { most_recent = true }
     metrics-server     = { most_recent = true }
     # aws-efs-csi-driver = {
@@ -22,6 +25,7 @@ module "eks" {
   eks_managed_node_groups = {
     worker = {
       instance_types = ["t3.medium"]
+      # min_size = 0: co the scale ve 0 node (cluster rong neu khong co workload khac)
       min_size       = 0
       max_size       = 5
       desired_size   = 2

@@ -1,17 +1,15 @@
+data "aws_caller_identity" "current" {}
+
 locals {
-  account_id           = "115228050885"
+  # Lay dung account dang dung AWS CLI / credentials (tranh lech voi ALB IRSA, ECR, ...)
+  account_id           = data.aws_caller_identity.current.account_id
   region               = "us-east-1"
   cluster_name         = "phuceks"
   cidr                 = "10.0.0.0/16"
   availability_zones   = ["us-east-1a", "us-east-1b"]
   public_subnet_cidrs  = ["10.0.1.0/24", "10.0.2.0/24"]
   private_subnet_cidrs = ["10.0.3.0/24", "10.0.4.0/24"]
-
 }
-
-
-data "aws_caller_identity" "current" {}
-data "aws_region" "current" {}
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
